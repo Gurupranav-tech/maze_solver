@@ -78,19 +78,23 @@ class GreedyBreadthFirstSearch(BreadthFirstSearch):
             if not self.frontier.contains_state(neighbour) and (neighbour.width, neighbour.height) not in self.explored:
                 child = Node(neighbour, parent=node)
                 if child.state.cell_type != 'wall':
-                    child.cost = self.heurestic((child.state.width, child.state.height), self.goal)
+                    child.cost = self.get_cost(child)
                     self.frontier.add(child)
 
         if node.state.cell_type not in ['start', 'end']: node.state.set_cell_type('exp')
 
         return node
 
+    def get_cost(self, child: Node):
+        return self.heurestic((child.state.width, child.state.height), self.goal)
+
     @staticmethod
     def heurestic(s: tuple[int, int], goal: tuple[int, int]):
         return abs(s[0] - goal[0]) + abs(s[1] - goal[1])
 
+
 algoritms_mapping = {
     'dfs': DepthFirstSearch,
     'bfs': BreadthFirstSearch,
-    'gbfs': GreedyBreadthFirstSearch
+    'gbfs': GreedyBreadthFirstSearch,
 }
