@@ -6,7 +6,7 @@ class DepthFirstSearch:
     def __init__(self, maze: Grid, start: Cell, end: Cell):
         self.frontier = self.Frontier()
         self.explored = set()
-        self.start = Node(start, None, None)
+        self.start = Node(start, None)
         self.goal = end.width, end.height
         self.maze = maze
         self.solution = []
@@ -33,7 +33,7 @@ class DepthFirstSearch:
 
         for neighbour in self.maze.get_neighbours(node.state):
             if not self.frontier.contains_state(neighbour) and (neighbour.width, neighbour.height) not in self.explored:
-                child = Node(neighbour, parent=node, action=None)
+                child = Node(neighbour, parent=node)
                 if child.state.cell_type != 'wall':
                     self.frontier.add(child)
 

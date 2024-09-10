@@ -73,10 +73,9 @@ class Grid(list):
 
 
 class Node:
-    def __init__(self, state: Cell, parent, action):
+    def __init__(self, state: Cell, parent):
         self.state: Cell = state
         self.parent: Node = parent
-        self.action = action
 
     def __str__(self) -> str:
         return f'{self.state}'
