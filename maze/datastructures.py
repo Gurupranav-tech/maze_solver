@@ -73,12 +73,16 @@ class Grid(list):
 
 
 class Node:
-    def __init__(self, state: Cell, parent):
+    def __init__(self, state: Cell, parent, cost: float = None):
         self.state: Cell = state
         self.parent: Node = parent
+        self.cost = cost if cost is not None else float('inf')
 
     def __str__(self) -> str:
-        return f'{self.state}'
+        return f'Node({self.state}, cost={self.cost})'
+
+    def __repr__(self) -> str:
+        return self.__str__()
 
 
 class StackFrontier:
@@ -107,4 +111,18 @@ class QueueFrontier(StackFrontier):
             return None
         node = self.frontier[0]
         self.frontier = self.frontier[1:]
+        return node
+
+        
+class GreedyFrontier(StackFrontier):
+    def remove(self) -> Node:
+        if self.empty():
+            return None
+        node = self.frontier[0]
+        i = 0
+        for idx, n in enumerate(self.frontier):
+            if node.cost > n.cost:
+                node = n
+                i = idx
+        self.frontier.pop(i)
         return node

@@ -11,8 +11,8 @@ mode = manual => interactively step through the algorithm
 
 ## Depth First Search
 
-![DFS](./DFS.png)
+![DFS](./imgs/DFS.png)
 
 ## Breadth First Search
 
-![BFS](./BFS.png)
+![BFS](./imgs/BFS.png)
