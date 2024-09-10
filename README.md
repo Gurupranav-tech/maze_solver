@@ -36,6 +36,8 @@ Example
 python3.12 maze.py maze1.txt bfs manual
 ```
 
+For more info refer to the word document in the repo
+
 ## Depth First Search
 
 ![DFS](./imgs/DFS.png)
