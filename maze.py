@@ -33,11 +33,7 @@ def main():
                 else:
                     done = True 
 
-        window.fill(WHITE)
-
         render_grid(window, maze)
-
-        pygame.display.update()
 
 
 if __name__ == '__main__':

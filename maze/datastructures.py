@@ -64,9 +64,9 @@ class Grid(list):
             neighbours.append(self[h][w-1])
         if h > 0:
             neighbours.append(self[h-1][w])
-        if w < len(self[0])-1:
+        if w < len(self[h])-1:
             neighbours.append(self[h][w+1])
-        if h < len(self)-1:
+        if h < len(self)-1 and len(self[h+1])-1 >= w:
             neighbours.append(self[h+1][w])
 
         return neighbours

@@ -45,11 +45,9 @@ def solve(alg: str, mode: str, maze: Grid, window: pygame.Surface):
                     if parent.state not in [maze.start, maze.end]: parent.state.set_cell_type('fin')
                 return True
 
-            window.fill(WHITE)
 
             render_grid(window, maze)
 
-            pygame.display.update()
 
             if first:
                 first = False
@@ -58,20 +56,22 @@ def solve(alg: str, mode: str, maze: Grid, window: pygame.Surface):
 
 
 def render_grid(window: pygame.Surface, grid: list[list[Cell]]):
-    for height, line in enumerate(grid):
-        for width, chr in enumerate(line):
+    window.fill(BLACK)
+    for line in (grid):
+        for chr in (line):
             chr.render(window)
+    pygame.display.update()
 
 
 def parse_args():
     if len(sys.argv) < 3:
-        print('usage error: python maze.py [mazefile] [algorithm] [optional:mode]')
+        print('usage error: python maze.py [mazefile] [algorithm] [optional:mode] [optional:grid_size]')
         sys.exit(1)
 
     maze_file = sys.argv[1]
     alg = sys.argv[2]
 
-    if len(sys.argv) == 4:
+    if len(sys.argv) >= 4:
         mode = sys.argv[3]
         return (maze_file, alg, mode)
 
